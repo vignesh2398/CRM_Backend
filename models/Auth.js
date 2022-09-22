@@ -1,21 +1,19 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  fname: {
+const authSchema = new mongoose.Schema({
+    name: {
     type: String,
     required: true,
     min: 1,
     max: 255,
   },
-  lname: {
-    type: String,
-    max: 255,
-  },
-  email: {
+  userId: {
     type: String,
     required: true,
+    min: 1,
     max: 255,
   },
+
   password: {
     type: String,
     required: true,
@@ -28,17 +26,15 @@ const userSchema = new mongoose.Schema({
     max: 10,
     min: 2,
   },
-  permissions: {
-    type: Array,
-  },
   token:{
-    type:String,
-    default:""
+    type: String,
+    required: true
   },
+
   date: {
     type: Date,
     default: Date.now(),
   },
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Auth", authSchema);

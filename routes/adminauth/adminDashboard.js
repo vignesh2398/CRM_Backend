@@ -5,12 +5,13 @@
 const router = require("express").Router();
 const verify = require("./adminverfiy");
 const ServiceRequest = require("../../models/ServiceRequest");
-const Lead = require("../../models/Contacts");
+
 const Contact = require("../../models/Contacts");
 const User = require("../../models/User");
 
 //VALIDATION OF USER INPUTS PREREQUISITES
 const Joi = require("joi");
+const Lead = require("../../models/Lead");
 
 const serviceRequestSchema = Joi.object({
   title: Joi.string().min(3).required(),
@@ -70,8 +71,13 @@ router.get("/servicerequest", verify, async (req, res) => {
 
 router.delete("/servicerequest", verify, async (req, res) => {
   try {
-    const tickets = await ServiceRequest.deleteOne({ _id: req.body._id });
-    res.status(200).send("deleted suuccesfully");
+    let _id=req.body._id;
+
+
+      const tickets = await ServiceRequest.deleteOne({ _id: req.body._id });
+
+    
+    res.status(200).send(_id);
   } catch (error) {
     console.log(error);
     res.status(400).send(error);
@@ -121,7 +127,7 @@ router.post("/lead", verify, async (req, res) => {
       //NEW LEAD IS ADDED
 
       const leads = await lead.save();
-      res.send("Lead created");
+      res.status(200).send("Lead created");
     }
   } catch (error) {
     res.status(400).send(error);
@@ -249,5 +255,17 @@ router.get("/users", verify, async (req, res) => {
     res.status(400).send(error);
   }
 });
+// verify auth
+
+router.post("/auth", verify, async (req, res) => {
+  try {
+    const users = await User.find().exec();
+    res.status(200).send(users);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
+
 
 module.exports = router;

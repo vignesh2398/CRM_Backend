@@ -5,6 +5,7 @@ const User = require("../../models/User");
 
 //VALIDATION OF USER INPUTS PREREQUISITES
 const Joi = require("joi");
+const Auth = require("../../models/Auth");
 
 const registerSchema = Joi.object({
   name: Joi.string().min(2).required(),
@@ -21,7 +22,8 @@ const loginSchema = Joi.object({
 //SIGNUP USER
 router.post("/register", async (req, res) => {
   //CHECKING IF USERID ALREADY EXISTS
-  const userIdExist = await User.findOne({ userId: req.body.userId });
+  
+  const userIdExist = await Auth.findOne({ userId: req.body.userId });
   if (userIdExist) {
     res.status(200).send({
       status: "400",
@@ -36,14 +38,14 @@ router.post("/register", async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
   //ASSIGN TOKEN
-  const token = jwt.sign(
+  const token =await jwt.sign(
     { userId: req.body.userId, type: req.body.type },
-    process.env.TOKEN_SECRET
+    process.env.ADMIN_TOKEN_SECRET
   );
 
   //ON PROCESS OF ADDING NEW USER
 
-  const user = new User({
+  const user = new Auth({
     name: req.body.name,
     userId: req.body.userId,
     password: hashedPassword,
@@ -70,7 +72,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   //CHECKING IF USER EMAIL EXISTS
 
-  const user = await User.findOne({ userId: req.body.userId });
+  const user = await Auth.findOne({ userId: req.body.userId });
   if (!user)
     return res
       .status(200)

@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 4050;
 //IMPORT ROUTES
 
 const authRoute = require("./routes/auth/auth");
+const passwordreset = require("./routes/passwordreset");
 const adminRoute = require("./routes/adminauth/adminauth");
 const managerRoute = require("./routes/managerauth/managerauth");
 const employeeRoute = require("./routes/employeeauth/employeeauth");
@@ -37,6 +38,7 @@ app.use("/api/employee", employeeRoute);
 app.use("/api/admindashboard", adminDashboardRoute);
 app.use("/api/managerdashboard", managerDashboardRoute);
 app.use("/api/employeedashboard", employeeDashboardRoute);
+app.use("/api/passwordrest", passwordreset);
 
 app.get("/", (req, res) => {
   res.send(

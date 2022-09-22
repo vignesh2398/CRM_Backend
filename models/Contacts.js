@@ -1,47 +1,26 @@
 const mongoose = require("mongoose");
 
 const contactSchema = new mongoose.Schema({
-  fName: {
-    type: String,
-    required: true,
-    max: 255,
-  },
-  lName: {
-    type: String,
-    max: 255,
-  },
+ 
+ 
   number: {
     type: String,
     max: 255,
   },
-  cmail: {
+  email: {
     type: String,
     max: 255,
   },
-  company: {
+  address: {
     type: String,
     max: 255,
   },
-  contactOwner: {
+  client: {
     type: String,
     max: 255,
   },
-  assignee: {
+  title: {
     type: String,
-    max: 255,
-  },
-  criticalClient: {
-    type: Boolean,
-  },
-  companySize: {
-    type: Number,
-  },
-  jobTitle: {
-    type: String,
-  },
-  status: {
-    type: String,
-    required: true,
     max: 255,
   },
   date: {
