@@ -1,13 +1,10 @@
 # CRM-backend
 
 
-Deployment Link : https://freee-crm.netlify.app/
+Deployment Link : https://crmback123.herokuapp.com/
 
 
-Frontend Link : https://github.com/shelcia/crm-frontend
-
-
-Backend Link : https://github.com/shelcia/CRM-backend
+Frontend Link : https://github.com/vignesh2398/CRM_frontend
 
 
 # Credentials to try out the app :
@@ -18,7 +15,7 @@ Backend Link : https://github.com/shelcia/CRM-backend
 
 email : admin@gmail.com
 
-password: shelcia
+password: 
 
 
 ### For Manager Signin
@@ -26,7 +23,7 @@ password: shelcia
 
 email : manager@gmail.com
 
-password: manager
+password: 
 
 
 ### For Employee Signin
@@ -34,4 +31,4 @@ password: manager
 
 email : employee@gmail.com
 
-password: employee
+password: 

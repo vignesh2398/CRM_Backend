@@ -20,7 +20,7 @@ const sendResetPasswordMail=async(name,email,token)=>{
             from:'vigneshfinal@gmail.com',
             to:email,
             subject:'For Reset password',
-            html:' Hi '+name+',please copy the link and <a href="http://localhost:4050/api/passwordrest/reset?'+token+'">reset your password</a>'
+            html:' Hi '+name+',please copy the link and <a href="https://crm-frontend-7h2j-c9hg55eqk-vignesh2398.vercel.app/newpassword/'+token+'">reset your password</a>'
         }
         transporter.sendMail(mailoptions,function(error,info){
             if(error){
